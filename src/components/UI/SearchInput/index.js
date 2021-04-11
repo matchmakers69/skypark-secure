@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { formValidate } from "utils/gifs";
 import { Styled } from "./SearchInput.styled";
 
-const SearchInput = ({ onSubmit, initialTerm }) => {
+const SearchInput = ({ onSubmit = () => {}, initialTerm = "models" }) => {
   const [searchQuery, setSearchQuery] = useState(initialTerm);
 
   const handleSearchSubmit = e => {
@@ -15,7 +15,7 @@ const SearchInput = ({ onSubmit, initialTerm }) => {
   const isDisabled = Object.keys(validationError).some(x => validationError[x]);
   return (
     <Styled.SearchFormWrapper>
-      <Styled.SearchForm novalidate onSubmit={handleSearchSubmit}>
+      <Styled.SearchForm data-testid="searchSubmitForm" novalidate onSubmit={handleSearchSubmit}>
         <Styled.SearchInput
           type="text"
           value={searchQuery}
@@ -31,7 +31,8 @@ const SearchInput = ({ onSubmit, initialTerm }) => {
 };
 
 SearchInput.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func,
+  initialTerm: PropTypes.string,
 };
 
 export default SearchInput;
