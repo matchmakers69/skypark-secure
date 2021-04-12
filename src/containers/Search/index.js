@@ -3,6 +3,7 @@ import { fetchGifsByTerm, GIFS_PART_QUANTITY } from "utils/gifs";
 import { renderError } from "utils/gifs";
 import SearchGifsList from "components/Gifs/GifsList";
 import SearchInput from "components/UI/SearchInput";
+import ButtonLoadMore from "components/common/ButtonLoadMore";
 import { Styled } from "styles/grid";
 
 const Search = () => {
@@ -72,6 +73,7 @@ const Search = () => {
     lodeMoreGifs();
   };
 
+  const buttonDisabled = gifs.length + GIFS_PART_QUANTITY > totalCount;
   return (
     <>
       {renderError(error)}
@@ -81,9 +83,7 @@ const Search = () => {
         <p>
           Displaying: {gifs.length} out of {totalCount}
         </p>
-        <button disabled={gifs.length + GIFS_PART_QUANTITY > totalCount} onClick={handleLoadMoreGifs} type="button">
-          Load more
-        </button>
+        <ButtonLoadMore disabled={buttonDisabled} text="Load more gifs" onClick={handleLoadMoreGifs} type="button" />
 
         {!loading && gifs.length > 0 && <SearchGifsList gifs={gifs} />}
 

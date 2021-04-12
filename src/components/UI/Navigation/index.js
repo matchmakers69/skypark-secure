@@ -6,7 +6,7 @@ const { TRENDY_GIFS, SEARCH_GIFS } = constants.routes;
 
 const Navigation = () => {
   return (
-    <Styled.NavigationList>
+    <Styled.NavigationList data-testid="navigationList">
       <Styled.NavigationListItem>
         <Styled.NavigationListItemLink to={TRENDY_GIFS}>Trendy Gifs</Styled.NavigationListItemLink>
       </Styled.NavigationListItem>
