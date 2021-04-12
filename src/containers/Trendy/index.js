@@ -17,9 +17,7 @@ const Trendy = () => {
       setLoading(true);
       try {
         const objResult = await getGifsTrendy(currentOffset);
-
         const { total_count } = objResult.pagination;
-
         setTotalResults(total_count);
 
         setGifs(
@@ -43,7 +41,7 @@ const Trendy = () => {
     setCurrentOffset(offset);
   };
 
-  if (loading) return <span>Is loading ...</span>;
+  if (loading) return <span>loading gifs...</span>;
   return (
     <>
       {renderError(error)}
@@ -51,7 +49,8 @@ const Trendy = () => {
         <Pagination offset={currentOffset} totalResults={totalResults} onClick={handlePaginationButtonClick} />
       )}
 
-      <Styled.Container>
+      <Styled.Container data-testid="trendyContainer">
+        <h2>Trendy gifs:</h2>
         <SearchGifsList gifs={gifs} />
       </Styled.Container>
     </>
