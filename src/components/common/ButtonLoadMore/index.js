@@ -4,7 +4,7 @@ import { LoadMoreBtn } from "./ButtonLoadMore.styled";
 
 const ButtonLoadMore = ({ text, onClick, disabled = false }) => {
   return (
-    <LoadMoreBtn disabled={disabled} onClick={onClick}>
+    <LoadMoreBtn data-testid="loadMore" disabled={disabled} onClick={onClick}>
       {text}
     </LoadMoreBtn>
   );
