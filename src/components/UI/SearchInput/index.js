@@ -12,7 +12,8 @@ const SearchInput = ({ onSubmit = () => {}, initialTerm = "models" }) => {
   };
 
   const handleSearchInputChange = ({ target: { value } }) => {
-    setSearchQuery(value);
+    const regex = /[0-9]+/;
+    setSearchQuery(value.replace(regex, ""));
   };
 
   const validationError = formValidate(searchQuery);
