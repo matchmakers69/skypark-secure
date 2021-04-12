@@ -35,6 +35,17 @@ describe("<SearchInput />", () => {
     expect(input).toHaveValue("models");
   });
 
+  test("prevents user from passing numbers to input", () => {
+    const { getByPlaceholderText } = render(
+      <ThemeProvider theme={theme}>
+        <SearchInput {...defaultProps} />
+      </ThemeProvider>
+    );
+    const input = getByPlaceholderText("Search gifs...");
+    fireEvent.change(input, { target: { value: "test123" } });
+    expect(input).toHaveValue("test");
+  });
+
   test("renders submit button", async () => {
     const mockSubmit = jest.fn();
     render(
