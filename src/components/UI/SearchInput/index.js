@@ -11,6 +11,10 @@ const SearchInput = ({ onSubmit = () => {}, initialTerm = "models" }) => {
     onSubmit(searchQuery);
   };
 
+  const handleSearchInputChange = ({ target: { value } }) => {
+    setSearchQuery(value);
+  };
+
   const validationError = formValidate(searchQuery);
   const isDisabled = Object.keys(validationError).some(x => validationError[x]);
   return (
@@ -20,7 +24,7 @@ const SearchInput = ({ onSubmit = () => {}, initialTerm = "models" }) => {
           type="text"
           value={searchQuery}
           placeholder="Search gifs..."
-          onChange={e => setSearchQuery(e.target.value)}
+          onChange={handleSearchInputChange}
         />
         <Styled.SubmitButton disabled={isDisabled} type="submit">
           Search
